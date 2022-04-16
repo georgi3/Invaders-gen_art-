@@ -23,15 +23,15 @@ def create_invader(border, draw, size, blackness):
     invader_x0, invader_y0, invader_x1, invader_y1 = border
     square_size = (invader_x1 - invader_x0)/size
 
-    black = (0, 0, 0)
+    black = ((0, 0, 0),)*blackness
     # black = (0, 43, 255)
     yellow = (255, 239, 0)
     blue = (0, 155, 255)
     blue_d = (0, 55, 255)
-    random_colors = [random_clr(), random_clr(), random_clr(), *(black,)*blackness]
-    # random_colors = [(0, 255, 255), (0, 255, 255), (0, 255, 255), *(black,) * blackness]
-    # random_colors = [blue_d, yellow, *(black,) * blackness]
-    # random_colors = [yellow, *(black,) * blackness]
+    random_colors = [random_clr(), random_clr(), random_clr(), *black]
+    # random_colors = [(0, 255, 255), (0, 255, 255), (0, 255, 255), *black]
+    # random_colors = [blue_d, yellow, *black]
+    # random_colors = [yellow, *black]
 
     for y in range(size):
         element = 0
@@ -53,16 +53,17 @@ def main(size, invaders, dimension=2560, screen=(2560, 1600), n=1, blackness=3):
     padding = 47
     for x in range(invaders):
         for y in range(invaders):
-            x0 = x * invader_size# + padding/2
-            y0 = y * invader_size #+ padding/2
-            x1 = x0 + invader_size# - padding
-            y1 = y0 + invader_size# - padding
+            x0 = x * invader_size + padding/2
+            y0 = y * invader_size + padding/2
+            x1 = x0 + invader_size - padding
+            y1 = y0 + invader_size - padding
             create_invader((x0, y0, x1, y1), draw, size, blackness)
     rndm = random.randint(0, 10)
-    # original_img.save(f'./img/ivanka - {size, invaders, blackness}', format='PNG')
-    original_img.show(f'nice_screen{rndm}.jpg')
+    original_img.save(f'./examples/ - {size, invaders, blackness}.png')
+    # original_img.show(f'nice_screen{rndm}.jpg')
 
 
 # main(size=70, invaders=10, dimension=1900, blackness=100)
-for _ in range(10):
-    main(size=101, invaders=1, screen=COMPUTER_SCREEN, blackness=3)
+for _ in range(1):
+    print(123)
+    main(size=7, invaders=10, screen=COMPUTER_SCREEN, blackness=5)
